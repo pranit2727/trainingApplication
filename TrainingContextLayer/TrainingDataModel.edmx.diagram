@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e2a4aa3feb6045129d13acf1bf20b13b" Name="Diagram1">
+        <EntityTypeShape EntityType="WebApiModel.RoomDetail" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebApiModel.Schedule" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebApiModel.Training" Width="1.5" PointX="5.375" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebApiModel.TrainingsAttendee" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="WebApiModel.FK__Schedules__RoomI__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="WebApiModel.FK__Trainings__Sched__6E01572D" ManuallyRouted="false" />
+        <AssociationConnector Association="WebApiModel.FK__Trainings__Train__71D1E811" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="WebApiModel.Meeting" Width="1.5" PointX="1.75" PointY="4.75" />
+        <AssociationConnector Association="WebApiModel.FK__Meetings__Schedu__75A278F5" />
+        <EntityTypeShape EntityType="WebApiModel.MeetingsAttendee" Width="1.5" PointX="4" PointY="7" />
+        <AssociationConnector Association="WebApiModel.FK__MeetingsA__Meeti__797309D9" />
+        <EntityTypeShape EntityType="WebApiModel.User" Width="1.5" PointX="8.375" PointY="4.75" />
+        <AssociationConnector Association="WebApiModel.FK__Meetings__UserId__76969D2E" />
+        <AssociationConnector Association="WebApiModel.FK__MeetingsA__UserI__7A672E12" />
+        <AssociationConnector Association="WebApiModel.FK__Trainings__UserI__6EF57B66" />
+        <AssociationConnector Association="WebApiModel.FK__Trainings__UserI__72C60C4A" />
+        <EntityTypeShape EntityType="WebApiModel.Role" Width="1.5" PointX="6.125" PointY="10.75" />
+        <EntityTypeShape EntityType="WebApiModel.UserCredential" Width="1.5" PointX="10.625" PointY="5.375" />
+        <AssociationConnector Association="WebApiModel.FK__Users__RoleId__6754599E" />
+        <AssociationConnector Association="WebApiModel.FK__UserCrede__UserI__6B24EA82" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

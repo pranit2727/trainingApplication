@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebApiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="RoomDetail">
+    <Key>
+      <PropertyRef Name="RoomId" />
+    </Key>
+    <Property Name="RoomId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoomName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <Property Name="DeletedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Schedules" Relationship="Self.FK__Schedules__RoomI__5441852A" FromRole="RoomDetails" ToRole="Schedules" />
+  </EntityType>
+  <EntityType Name="Schedule">
+    <Key>
+      <PropertyRef Name="ScheduleId" />
+    </Key>
+    <Property Name="ScheduleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StartTime" Type="DateTime" Precision="3" />
+    <Property Name="EndTime" Type="DateTime" Precision="3" />
+    <Property Name="RoomId" Type="Int32" />
+    <NavigationProperty Name="RoomDetail" Relationship="Self.FK__Schedules__RoomI__5441852A" FromRole="Schedules" ToRole="RoomDetails" />
+    <NavigationProperty Name="Trainings" Relationship="Self.FK__Trainings__Sched__6E01572D" FromRole="Schedules" ToRole="Trainings" />
+    <NavigationProperty Name="Meetings" Relationship="WebApiModel.FK__Meetings__Schedu__75A278F5" FromRole="Schedule" ToRole="Meeting" />
+  </EntityType>
+  <EntityType Name="Training">
+    <Key>
+      <PropertyRef Name="TrainingId" />
+    </Key>
+    <Property Name="TrainingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Topic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ScheduleId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <Property Name="DeletedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Schedule" Relationship="Self.FK__Trainings__Sched__6E01572D" FromRole="Trainings" ToRole="Schedules" />
+    <NavigationProperty Name="TrainingsAttendees" Relationship="Self.FK__Trainings__Train__71D1E811" FromRole="Trainings" ToRole="TrainingsAttendees" />
+    <NavigationProperty Name="User" Relationship="WebApiModel.FK__Trainings__UserI__6EF57B66" FromRole="Training" ToRole="User" />
+  </EntityType>
+  <EntityType Name="TrainingsAttendee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TrainingId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <Property Name="DeletedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Training" Relationship="Self.FK__Trainings__Train__71D1E811" FromRole="TrainingsAttendees" ToRole="Trainings" />
+    <NavigationProperty Name="User" Relationship="WebApiModel.FK__Trainings__UserI__72C60C4A" FromRole="TrainingsAttendee" ToRole="User" />
+  </EntityType>
+  <Association Name="FK__Schedules__RoomI__5441852A">
+    <End Role="RoomDetails" Type="Self.RoomDetail" Multiplicity="0..1" />
+    <End Role="Schedules" Type="Self.Schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomDetails">
+        <PropertyRef Name="RoomId" />
+      </Principal>
+      <Dependent Role="Schedules">
+        <PropertyRef Name="RoomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Trainings__Sched__6E01572D">
+    <End Role="Schedules" Type="Self.Schedule" Multiplicity="0..1" />
+    <End Role="Trainings" Type="Self.Training" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schedules">
+        <PropertyRef Name="ScheduleId" />
+      </Principal>
+      <Dependent Role="Trainings">
+        <PropertyRef Name="ScheduleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Trainings__Train__71D1E811">
+    <End Role="Trainings" Type="Self.Training" Multiplicity="0..1" />
+    <End Role="TrainingsAttendees" Type="Self.TrainingsAttendee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trainings">
+        <PropertyRef Name="TrainingId" />
+      </Principal>
+      <Dependent Role="TrainingsAttendees">
+        <PropertyRef Name="TrainingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WebApiEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="RoomDetails" EntityType="Self.RoomDetail" />
+    <EntitySet Name="Schedules" EntityType="Self.Schedule" />
+    <EntitySet Name="Trainings" EntityType="Self.Training" />
+    <EntitySet Name="TrainingsAttendees" EntityType="Self.TrainingsAttendee" />
+    <AssociationSet Name="FK__Schedules__RoomI__5441852A" Association="Self.FK__Schedules__RoomI__5441852A">
+      <End Role="RoomDetails" EntitySet="RoomDetails" />
+      <End Role="Schedules" EntitySet="Schedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Trainings__Sched__6E01572D" Association="Self.FK__Trainings__Sched__6E01572D">
+      <End Role="Schedules" EntitySet="Schedules" />
+      <End Role="Trainings" EntitySet="Trainings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Trainings__Train__71D1E811" Association="Self.FK__Trainings__Train__71D1E811">
+      <End Role="Trainings" EntitySet="Trainings" />
+      <End Role="TrainingsAttendees" EntitySet="TrainingsAttendees" />
+    </AssociationSet>
+    <EntitySet Name="Meetings" EntityType="WebApiModel.Meeting" />
+    <AssociationSet Name="FK__Meetings__Schedu__75A278F5" Association="WebApiModel.FK__Meetings__Schedu__75A278F5">
+      <End Role="Schedule" EntitySet="Schedules" />
+      <End Role="Meeting" EntitySet="Meetings" />
+    </AssociationSet>
+    <EntitySet Name="MeetingsAttendees" EntityType="WebApiModel.MeetingsAttendee" />
+    <AssociationSet Name="FK__MeetingsA__Meeti__797309D9" Association="WebApiModel.FK__MeetingsA__Meeti__797309D9">
+      <End Role="Meeting" EntitySet="Meetings" />
+      <End Role="MeetingsAttendee" EntitySet="MeetingsAttendees" />
+    </AssociationSet>
+    <EntitySet Name="Users" EntityType="WebApiModel.User" />
+    <AssociationSet Name="FK__Meetings__UserId__76969D2E" Association="WebApiModel.FK__Meetings__UserId__76969D2E">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Meeting" EntitySet="Meetings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MeetingsA__UserI__7A672E12" Association="WebApiModel.FK__MeetingsA__UserI__7A672E12">
+      <End Role="User" EntitySet="Users" />
+      <End Role="MeetingsAttendee" EntitySet="MeetingsAttendees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Trainings__UserI__6EF57B66" Association="WebApiModel.FK__Trainings__UserI__6EF57B66">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Training" EntitySet="Trainings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Trainings__UserI__72C60C4A" Association="WebApiModel.FK__Trainings__UserI__72C60C4A">
+      <End Role="User" EntitySet="Users" />
+      <End Role="TrainingsAttendee" EntitySet="TrainingsAttendees" />
+    </AssociationSet>
+    <EntitySet Name="Roles" EntityType="WebApiModel.Role" />
+    <EntitySet Name="UserCredentials" EntityType="WebApiModel.UserCredential" />
+    <AssociationSet Name="FK__Users__RoleId__6754599E" Association="WebApiModel.FK__Users__RoleId__6754599E">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserCrede__UserI__6B24EA82" Association="WebApiModel.FK__UserCrede__UserI__6B24EA82">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserCredential" EntitySet="UserCredentials" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Meeting">
+    <Key>
+      <PropertyRef Name="MeetingId" />
+    </Key>
+    <Property Name="MeetingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MeetingName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Agenda" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="ScheduleId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <Property Name="DeletedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Schedule" Relationship="WebApiModel.FK__Meetings__Schedu__75A278F5" FromRole="Meeting" ToRole="Schedule" />
+    <NavigationProperty Name="MeetingsAttendees" Relationship="WebApiModel.FK__MeetingsA__Meeti__797309D9" FromRole="Meeting" ToRole="MeetingsAttendee" />
+    <NavigationProperty Name="User" Relationship="WebApiModel.FK__Meetings__UserId__76969D2E" FromRole="Meeting" ToRole="User" />
+  </EntityType>
+  <Association Name="FK__Meetings__Schedu__75A278F5">
+    <End Type="WebApiModel.Schedule" Role="Schedule" Multiplicity="0..1" />
+    <End Type="WebApiModel.Meeting" Role="Meeting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schedule">
+        <PropertyRef Name="ScheduleId" />
+      </Principal>
+      <Dependent Role="Meeting">
+        <PropertyRef Name="ScheduleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="MeetingsAttendee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MeetingId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <Property Name="DeletedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Meeting" Relationship="WebApiModel.FK__MeetingsA__Meeti__797309D9" FromRole="MeetingsAttendee" ToRole="Meeting" />
+    <NavigationProperty Name="User" Relationship="WebApiModel.FK__MeetingsA__UserI__7A672E12" FromRole="MeetingsAttendee" ToRole="User" />
+  </EntityType>
+  <Association Name="FK__MeetingsA__Meeti__797309D9">
+    <End Type="WebApiModel.Meeting" Role="Meeting" Multiplicity="0..1" />
+    <End Type="WebApiModel.MeetingsAttendee" Role="MeetingsAttendee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Meeting">
+        <PropertyRef Name="MeetingId" />
+      </Principal>
+      <Dependent Role="MeetingsAttendee">
+        <PropertyRef Name="MeetingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="RoleId" Type="Int32" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <Property Name="DeletedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Meetings" Relationship="WebApiModel.FK__Meetings__UserId__76969D2E" FromRole="User" ToRole="Meeting" />
+    <NavigationProperty Name="MeetingsAttendees" Relationship="WebApiModel.FK__MeetingsA__UserI__7A672E12" FromRole="User" ToRole="MeetingsAttendee" />
+    <NavigationProperty Name="Trainings" Relationship="WebApiModel.FK__Trainings__UserI__6EF57B66" FromRole="User" ToRole="Training" />
+    <NavigationProperty Name="TrainingsAttendees" Relationship="WebApiModel.FK__Trainings__UserI__72C60C4A" FromRole="User" ToRole="TrainingsAttendee" />
+    <NavigationProperty Name="Role" Relationship="WebApiModel.FK__Users__RoleId__6754599E" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="UserCredentials" Relationship="WebApiModel.FK__UserCrede__UserI__6B24EA82" FromRole="User" ToRole="UserCredential" />
+  </EntityType>
+  <Association Name="FK__Meetings__UserId__76969D2E">
+    <End Type="WebApiModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="WebApiModel.Meeting" Role="Meeting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Meeting">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MeetingsA__UserI__7A672E12">
+    <End Type="WebApiModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="WebApiModel.MeetingsAttendee" Role="MeetingsAttendee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="MeetingsAttendee">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Trainings__UserI__6EF57B66">
+    <End Type="WebApiModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="WebApiModel.Training" Role="Training" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Training">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Trainings__UserI__72C60C4A">
+    <End Type="WebApiModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="WebApiModel.TrainingsAttendee" Role="TrainingsAttendee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="TrainingsAttendee">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="WebApiModel.FK__Users__RoleId__6754599E" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="UserCredential">
+    <Key>
+      <PropertyRef Name="UserCreadID" />
+    </Key>
+    <Property Name="UserCreadID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsEmailVerified" Type="Boolean" />
+    <Property Name="ActivationCode" Type="Guid" />
+    <Property Name="IsActivated" Type="Boolean" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="WebApiModel.FK__UserCrede__UserI__6B24EA82" FromRole="UserCredential" ToRole="User" />
+  </EntityType>
+  <Association Name="FK__Users__RoleId__6754599E">
+    <End Type="WebApiModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="WebApiModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserCrede__UserI__6B24EA82">
+    <End Type="WebApiModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="WebApiModel.UserCredential" Role="UserCredential" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserCredential">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,12 @@
+E:\trainingByNizam\TrainingApp\TrainingContextLayer\bin\Release\TrainingContextLayer.dll.config
+E:\trainingByNizam\TrainingApp\TrainingContextLayer\bin\Release\TrainingContextLayer.dll
+E:\trainingByNizam\TrainingApp\TrainingContextLayer\bin\Release\TrainingContextLayer.pdb
+E:\trainingByNizam\TrainingApp\TrainingContextLayer\bin\Release\EntityFramework.dll
+E:\trainingByNizam\TrainingApp\TrainingContextLayer\bin\Release\EntityFramework.SqlServer.dll
+E:\trainingByNizam\TrainingApp\TrainingContextLayer\bin\Release\EntityFramework.xml
+E:\trainingByNizam\TrainingApp\TrainingContextLayer\bin\Release\EntityFramework.SqlServer.xml
+E:\trainingByNizam\TrainingApp\TrainingContextLayer\obj\Release\TrainingContextLayer.csprojAssemblyReference.cache
+E:\trainingByNizam\TrainingApp\TrainingContextLayer\obj\Release\TrainingContextLayer.csproj.CoreCompileInputs.cache
+E:\trainingByNizam\TrainingApp\TrainingContextLayer\obj\Release\TrainingContextLayer.csproj.CopyComplete
+E:\trainingByNizam\TrainingApp\TrainingContextLayer\obj\Release\TrainingContextLayer.dll
+E:\trainingByNizam\TrainingApp\TrainingContextLayer\obj\Release\TrainingContextLayer.pdb

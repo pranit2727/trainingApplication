@@ -1,0 +1,14 @@
+E:\trainingByNizam\TrainingApp\MasterInterfaces\bin\Debug\MasterInterfaces.dll
+E:\trainingByNizam\TrainingApp\MasterInterfaces\bin\Debug\MasterInterfaces.pdb
+E:\trainingByNizam\TrainingApp\MasterInterfaces\bin\Debug\TrainingContextLayer.dll
+E:\trainingByNizam\TrainingApp\MasterInterfaces\bin\Debug\ViewModels.dll
+E:\trainingByNizam\TrainingApp\MasterInterfaces\bin\Debug\EntityFramework.dll
+E:\trainingByNizam\TrainingApp\MasterInterfaces\bin\Debug\TrainingContextLayer.pdb
+E:\trainingByNizam\TrainingApp\MasterInterfaces\bin\Debug\TrainingContextLayer.dll.config
+E:\trainingByNizam\TrainingApp\MasterInterfaces\bin\Debug\ViewModels.pdb
+E:\trainingByNizam\TrainingApp\MasterInterfaces\bin\Debug\EntityFramework.xml
+E:\trainingByNizam\TrainingApp\MasterInterfaces\obj\Debug\MasterInterfaces.csprojAssemblyReference.cache
+E:\trainingByNizam\TrainingApp\MasterInterfaces\obj\Debug\MasterInterfaces.csproj.CoreCompileInputs.cache
+E:\trainingByNizam\TrainingApp\MasterInterfaces\obj\Debug\MasterInterfaces.csproj.CopyComplete
+E:\trainingByNizam\TrainingApp\MasterInterfaces\obj\Debug\MasterInterfaces.dll
+E:\trainingByNizam\TrainingApp\MasterInterfaces\obj\Debug\MasterInterfaces.pdb

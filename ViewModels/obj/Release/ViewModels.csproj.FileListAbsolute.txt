@@ -1,0 +1,6 @@
+E:\trainingByNizam\TrainingApp\ViewModels\bin\Release\ViewModels.dll
+E:\trainingByNizam\TrainingApp\ViewModels\bin\Release\ViewModels.pdb
+E:\trainingByNizam\TrainingApp\ViewModels\obj\Release\ViewModels.csprojAssemblyReference.cache
+E:\trainingByNizam\TrainingApp\ViewModels\obj\Release\ViewModels.csproj.CoreCompileInputs.cache
+E:\trainingByNizam\TrainingApp\ViewModels\obj\Release\ViewModels.dll
+E:\trainingByNizam\TrainingApp\ViewModels\obj\Release\ViewModels.pdb

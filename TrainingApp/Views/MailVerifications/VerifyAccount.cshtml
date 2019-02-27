@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "VerifyAccount";
+}
+
+<h2>VerifyAccount</h2>
+
+@if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.status))
+{
+    <div>
+        <strong>your account is activated successfully</strong>
+    </div>
+}
+else
+{
+    <div>
+        <strong>your account is not activated</strong>
+    </div>
+}
